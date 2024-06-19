@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
+    hostname: LeHack_x_Thales
+    container_name: CHALL_WEB_OSINT_BACK
+    restart: unless-stopped
+    environment:
+      - JWT_SECRET_KEY=83275....REDACTEC....58D12B6A
+      - THEO_PASSWD=definitly_not_the_flag
+      - JOHN_PASSWD=nope_still_not_a_flag
+      - FLAG=THALES{FAKE_FLAG}
+
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+    hostname: LeHack_x_Thales
+    container_name: CHALL_WEB_OSINT_FRONT
+    restart: unless-stopped
+
+networks:
+  app-network:
